@@ -25,13 +25,11 @@ const App = () => {
 
   return (
     <div>
-      {/* <pre>{post ? JSON.stringify(post, null, 2) : "Loading..."}</pre>
-       */}
       <h1>Blue Whales</h1>
       <button className="btn" onClick={getData}>
         Get User List
       </button>
-      {posts.length > 0 && (
+      {posts.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -41,19 +39,25 @@ const App = () => {
               <th>Avatar</th>
             </tr>
           </thead>
-          {posts.map((user) => (
-            <tbody>
+          <tbody>
+            {posts.map((user) => (
               <tr key={user.id}>
                 <td>{user.first_name}</td>
                 <td>{user.last_name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <img src={user.avatar} alt="avatar" />
+                  <img
+                    src={user.avatar}
+                    alt={`${user.first_name} ${user.last_name}`}
+                    width="50"
+                  />
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
+      ) : (
+        <p>No Data Found</p>
       )}
     </div>
   );
